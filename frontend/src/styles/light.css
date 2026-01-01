@@ -1,0 +1,114 @@
+/* Light Theme Styles */
+
+:root.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.light body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Light mode cards */
+.light .card {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+/* Light mode inputs */
+.light input,
+.light textarea,
+.light select {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Light mode buttons */
+.light .btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.light .btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.light .btn-secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.light .btn-secondary:hover {
+  background-color: var(--border-color);
+}
+
+/* Light mode links */
+.light a {
+  color: var(--primary-color);
+}
+
+.light a:hover {
+  color: var(--primary-hover);
+}
+
+/* Light mode code */
+.light code {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Light mode tables */
+.light table {
+  background-color: var(--bg-primary);
+}
+
+.light th {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.light td {
+  border-color: var(--border-color);
+}
+
+/* Light mode modals */
+.light .modal {
+  background-color: var(--bg-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Light mode tooltips */
+.light .tooltip {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
