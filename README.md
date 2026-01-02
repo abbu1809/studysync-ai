@@ -224,3 +224,4 @@ For issues and questions, please open a GitHub issue.
 ---
 
 **Built with ❤️ for students who want to study smarter, not harder.**
+**Team: Pixel Pirates**
