@@ -1,0 +1,64 @@
+name: Full Project Test
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test-backend:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install & Test Backend
+      working-directory: ./backend
+      run: |
+        npm ci
+        node -c src/server.js
+        npm test --if-present
+      continue-on-error: true
+      
+  test-frontend:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install & Build Frontend
+      working-directory: ./frontend
+      env:
+        CI: false
+      run: |
+        npm ci
+        npm run build
+        
+  security-scan:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Run npm audit (Backend)
+      working-directory: ./backend
+      run: npm audit --audit-level=high
+      continue-on-error: true
+      
+    - name: Run npm audit (Frontend)
+      working-directory: ./frontend
+      run: npm audit --audit-level=high
+      continue-on-error: true

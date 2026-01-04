@@ -1,0 +1,40 @@
+# Render Configuration
+# This file tells Render how to build and run your backend
+
+services:
+  - type: web
+    name: studysync-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GOOGLE_CLOUD_API_KEY
+        sync: false
+      - key: GOOGLE_CLOUD_PROJECT_ID
+        sync: false
+      - key: DOCUMENT_AI_PROCESSOR_ID
+        sync: false
+      - key: DOCUMENT_AI_LOCATION
+        sync: false
+      - key: VISION_API_ENABLED
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+    healthCheckPath: /api/health
+    autoDeploy: true
