@@ -3,6 +3,7 @@ import { FiCalendar, FiClock, FiCheckCircle, FiRefreshCw, FiBook } from 'react-i
 import { studyPlanService, assignmentService } from '../services';
 import { toast } from 'react-toastify';
 import { format, addDays } from 'date-fns';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const StudyPlanner = () => {
   const [plans, setPlans] = useState([]);
@@ -120,10 +121,7 @@ const StudyPlanner = () => {
       </div>
 
       {loading ? (
-        <div className="text-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading study plans...</p>
-        </div>
+        <LoadingAnimation message="Loading study plans..." fullScreen={false} />
       ) : !currentPlan ? (
         <div className="card p-12 text-center">
           <FiCalendar className="text-6xl text-gray-400 mx-auto mb-4" />

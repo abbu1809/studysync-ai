@@ -1,0 +1,386 @@
+/* ============================================
+   LOADING ANIMATION STYLES
+   StudySync AI - Data Particles Animation
+   ============================================ */
+
+/* Color Variables */
+:root {
+  --primary-blue: #1e3a8a;
+  --electric-purple: #7c3aed;
+  --bright-cyan: #06b6d4;
+  --dark-bg: #0f172a;
+  --light-accent: #f0f9ff;
+}
+
+/* ============================================
+   BASE CONTAINER STYLES
+   ============================================ */
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, #1e293b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+.loading-inline {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* ============================================
+   BRAIN ANIMATION VARIANT
+   ============================================ */
+
+.loading-brain-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Outer rotating ring */
+.brain-orbit-ring {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 3px solid transparent;
+  border-top-color: var(--bright-cyan);
+  border-right-color: var(--electric-purple);
+  border-radius: 50%;
+  animation: rotateRing 3s linear infinite;
+  filter: drop-shadow(0 0 10px var(--bright-cyan));
+}
+
+@keyframes rotateRing {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Brain core */
+.brain-core {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  display: flex;
+  gap: 2px;
+  z-index: 2;
+}
+
+.brain-hemisphere {
+  flex: 1;
+  background: linear-gradient(135deg, var(--electric-purple), var(--primary-blue));
+  border-radius: 50% 50% 45% 45%;
+  position: relative;
+  overflow: hidden;
+  animation: brainPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+}
+
+.brain-left {
+  animation-delay: 0s;
+}
+
+.brain-right {
+  animation-delay: 0.3s;
+}
+
+@keyframes brainPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.brain-fold {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  animation: foldPulse 3s ease-in-out infinite;
+}
+
+.brain-fold:nth-child(1) { top: 20%; left: 10%; width: 60%; }
+.brain-fold:nth-child(2) { top: 40%; left: 5%; width: 70%; }
+.brain-fold:nth-child(3) { top: 60%; left: 15%; width: 50%; }
+
+@keyframes foldPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Neural network nodes */
+.neural-network {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.neural-node {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateX(90px);
+  animation: nodeFloat 2s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes nodeFloat {
+  0%, 100% { transform: translate(-50%, -50%) rotate(var(--angle)) translateX(90px) scale(0.8); }
+  50% { transform: translate(-50%, -50%) rotate(var(--angle)) translateX(95px) scale(1.2); }
+}
+
+.node-pulse {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--bright-cyan), transparent);
+  border-radius: 50%;
+  animation: nodePulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 15px var(--bright-cyan);
+}
+
+@keyframes nodePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+}
+
+/* Data particles */
+.data-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--bright-cyan);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  animation: particleFlow var(--speed) linear infinite;
+  animation-delay: var(--delay);
+  box-shadow: 0 0 10px var(--bright-cyan);
+}
+
+@keyframes particleFlow {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   PARTICLES ANIMATION
+   ============================================ */
+
+.loading-particles-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.particle-center-glow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--electric-purple), transparent 70%);
+  border-radius: 50%;
+  animation: centerGlowPulse 2s ease-in-out infinite;
+  filter: blur(10px);
+}
+
+@keyframes centerGlowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.5); opacity: 1; }
+}
+
+.particle-stream {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--angle));
+  animation: streamRotate 8s linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes streamRotate {
+  0% { transform: rotate(var(--angle)); }
+  100% { transform: rotate(calc(var(--angle) + 360deg)); }
+}
+
+.stream-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, var(--bright-cyan), var(--electric-purple));
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  animation: streamFlow var(--duration) ease-in-out infinite;
+  box-shadow: 0 0 15px currentColor;
+}
+
+@keyframes streamFlow {
+  0% {
+    transform: translate(-50%, -50%) translateX(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(120px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.particle-ring {
+  position: absolute;
+  border: 2px solid;
+  border-radius: 50%;
+  animation: ringExpand 3s ease-out infinite;
+}
+
+.particle-ring-1 {
+  width: 80px;
+  height: 80px;
+  border-color: rgba(124, 58, 237, 0.6);
+  animation-delay: 0s;
+}
+
+.particle-ring-2 {
+  width: 120px;
+  height: 120px;
+  border-color: rgba(6, 182, 212, 0.4);
+  animation-delay: 1s;
+}
+
+.particle-ring-3 {
+  width: 160px;
+  height: 160px;
+  border-color: rgba(30, 58, 138, 0.3);
+  animation-delay: 2s;
+}
+
+@keyframes ringExpand {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   LOADING MESSAGE
+   ============================================ */
+
+.loading-message {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.message-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--light-accent);
+  margin: 0;
+  animation: messagePulse 2s ease-in-out infinite;
+  letter-spacing: 0.5px;
+}
+
+@keyframes messagePulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.message-underline {
+  width: 100px;
+  height: 3px;
+  margin: 0.5rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--bright-cyan), transparent);
+  border-radius: 2px;
+  animation: underlineGrow 2s ease-in-out infinite;
+}
+
+@keyframes underlineGrow {
+  0%, 100% { width: 60px; }
+  50% { width: 120px; }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .loading-particles-container {
+    transform: scale(0.8);
+  }
+
+  .message-text {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+  }
+}
+
+/* ============================================
+   DARK/LIGHT THEME SUPPORT
+   ============================================ */
+
+.light-theme .loading-overlay {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.light-theme .message-text {
+  color: var(--primary-blue);
+}

@@ -4,6 +4,7 @@ import { assignmentService } from '../services';
 import { toast } from 'react-toastify';
 import { format, differenceInDays } from 'date-fns';
 import DeleteModal from '../components/DeleteModal';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);

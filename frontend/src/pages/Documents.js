@@ -3,6 +3,7 @@ import { FiUpload, FiFile, FiTrash2, FiRefreshCw, FiDownload } from 'react-icons
 import { documentService } from '../services';
 import { toast } from 'react-toastify';
 import DeleteModal from '../components/DeleteModal';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const Documents = () => {
   const [documents, setDocuments] = useState([]);

@@ -4,6 +4,7 @@ import { documentService } from '../services';
 import { FiBook, FiCalendar, FiAward, FiChevronDown, FiChevronRight, FiTrash2 } from 'react-icons/fi';
 import { format } from 'date-fns';
 import DeleteModal from '../components/DeleteModal';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 function Syllabus() {
   const [syllabusData, setSyllabusData] = useState([]);
@@ -52,11 +53,7 @@ function Syllabus() {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
+    return <LoadingAnimation message="Loading syllabus..." fullScreen={false} />;
   }
 
   return (

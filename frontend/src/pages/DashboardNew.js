@@ -6,6 +6,7 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 import { FiTrendingUp, FiClock, FiAward, FiTarget, FiBookOpen, FiCheckCircle } from 'react-icons/fi';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
 
@@ -41,11 +42,7 @@ function DashboardNew() {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
-      </div>
-    );
+    return <LoadingAnimation message="Loading dashboard..." />;
   }
 
   if (!analytics) {

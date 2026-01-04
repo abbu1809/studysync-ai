@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import { authService } from '../services';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const AuthContext = createContext({});
 
@@ -119,9 +120,13 @@ export const AuthProvider = ({ children }) => {
     getToken
   };
 
+  if (loading) {
+    return <LoadingAnimation message="Initializing StudySync AI..." />;
+  }
+
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };

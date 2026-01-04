@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiRefreshCw, FiCheckCircle, FiXCircle, FiStar } from 'react-icons/fi';
 import { vivaService, documentService } from '../services';
 import { toast } from 'react-toastify';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const VivaQuestions = () => {
   const [questions, setQuestions] = useState([]);
@@ -203,10 +204,7 @@ const VivaQuestions = () => {
         {/* Questions & Answer Panel */}
         <div className="lg:col-span-2 space-y-6">
           {loading ? (
-            <div className="card p-12 text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-              <p className="mt-4 text-gray-600">Loading questions...</p>
-            </div>
+            <LoadingAnimation message="Loading questions..." fullScreen={false} />
           ) : questions.length === 0 ? (
             <div className="card p-12 text-center">
               <FiStar className="text-6xl text-gray-400 mx-auto mb-4" />

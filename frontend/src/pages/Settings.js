@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { userService } from '../services';
 import { toast } from 'react-toastify';
+import LoadingAnimation from '../components/LoadingAnimation';
 
 const Settings = () => {
   const { currentUser } = useAuth();
@@ -81,14 +82,7 @@ const Settings = () => {
   };
 
   if (loading) {
-    return (
-      <div className="p-6 max-w-4xl mx-auto">
-        <div className="text-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading settings...</p>
-        </div>
-      </div>
-    );
+    return <LoadingAnimation message="Loading settings..." fullScreen={false} />;
   }
 
   return (
