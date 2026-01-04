@@ -1,10 +1,8 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/build",
-  "devCommand": "cd frontend && npm start",
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
   "installCommand": "npm install",
   "framework": "create-react-app",
-  "regions": ["iad1"],
   "env": {
     "REACT_APP_API_URL": ""
   },
