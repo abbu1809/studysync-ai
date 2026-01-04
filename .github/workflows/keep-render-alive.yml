@@ -1,0 +1,35 @@
+name: Keep Render Alive
+
+on:
+  schedule:
+    # Run every 14 minutes to prevent Render free tier spin-down
+    - cron: '*/14 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping-render:
+    name: Ping Render Backend
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Ping Backend Health Endpoint
+      run: |
+        RENDER_URL="${{ secrets.RENDER_BACKEND_URL }}"
+        
+        if [ -z "$RENDER_URL" ]; then
+          echo "⚠️ RENDER_BACKEND_URL secret not set"
+          echo "Please add your Render backend URL as a GitHub secret"
+          exit 0
+        fi
+        
+        echo "🔄 Pinging Render backend..."
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" "${RENDER_URL}/api/health" || echo "000")
+        
+        if [ "$RESPONSE" = "200" ] || [ "$RESPONSE" = "404" ]; then
+          echo "✅ Backend is alive! (HTTP $RESPONSE)"
+        else
+          echo "⚠️ Backend returned HTTP $RESPONSE"
+          # Still exit 0 to not fail the workflow
+        fi
+        
+        echo "⏰ Next ping in 14 minutes"
