@@ -17,6 +17,7 @@ const vivaRoutes = require('./routes/viva.routes');
 const resourceRoutes = require('./routes/resource.routes');
 const habitRoutes = require('./routes/habit.routes');
 const analyticsRoutes = require('./routes/analytics.routes');
+const notificationRoutes = require('./routes/notification.routes');
 
 // Import middleware
 const errorHandler = require('./middleware/errorHandler');
@@ -71,6 +72,7 @@ app.use('/api/viva', vivaRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/habits', habitRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // 404 Handler
 app.use('*', (req, res) => {

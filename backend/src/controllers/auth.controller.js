@@ -1,5 +1,6 @@
 const { db } = require('../config/firebase');
 const { FieldValue } = require('firebase-admin/firestore');
+const emailService = require('../services/email.service');
 
 /**
  * Register new user and create Firestore profile
@@ -41,6 +42,9 @@ async function register(req, res, next) {
         breakDuration: 15,
         sessionDuration: 45,
         notificationsEnabled: true,
+        emailNotifications: true,
+        deadlineReminders: true,
+        dailySummary: false,
         theme: 'light'
       },
       
@@ -61,6 +65,17 @@ async function register(req, res, next) {
     };
 
     await userRef.set(userData);
+
+    // Send welcome email (async, don't wait for it)
+    emailService.sendWelcomeEmail(email, displayName)
+      .then(result => {
+        if (result.success) {
+          console.log(`Welcome email sent to ${email}`);
+        }
+      })
+      .catch(err => {
+        console.error('Failed to send welcome email:', err.message);
+      });
 
     res.status(201).json({
       success: true,
